@@ -1,16 +1,15 @@
 import React from "react";
-import { createTheme, ThemeProvider } from "@rneui/themed";
-import Component from "./components/MyComponent";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import Routes from "./src/routes";
 
-const theme = createTheme({
-  lightColors: {},
-  darkColors: {},
-});
+
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Component />
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <SafeAreaView style={{flex: 1}}>
+        <Routes />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
