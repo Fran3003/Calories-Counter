@@ -90,11 +90,30 @@ const useFoodStorage = () => {
         }
     }
 
+    const handleRemoveTodayFood = async (index: number) => {
+        try {
+            const todatFood = await handleGetTodayFood()
+            const filterItem = todatFood?.filter((item: Meal, itemIndex) => {
+                return itemIndex !== index
+            })
+
+            AsyncStorage.setItem(
+                MY_TODAY_FOOD_KEY,
+                JSON.stringify(filterItem)
+             )
+
+            return Promise.resolve()
+        } catch (error) {
+           return Promise.reject(error)
+        }
+    }
+
     return {
         onSaveFood: handleSaveFood,
         onGetFodds: handleGetFoods,
         onSaveTodayFood: handleSaveTodayFood,
         onGetTodayFood: handleGetTodayFood,
+        onDeleteTodayFood: handleRemoveTodayFood,
     }
 };
 
